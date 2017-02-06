@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 /* Returns the index of the next prime (non-zero, since we "knock out" non-primes by setting their value to zero) */
-int getNextPrime(int i, int x[]) {
-  while (x[i] == 0) {
+int getNextPrime(int i, int x[], int NPRIMES) {
+  while (i < NPRIMES && x[i] == 0) {
     i++;
   }
   return i;
@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     printf("%d\n", i);
   }
 
-  for(i=2; i < NPRIMES; i = getNextPrime(i+1, primes)) {
+  for(i=2; i < NPRIMES-1; i = getNextPrime(i+1, primes, NPRIMES)) {
     for(j = (i*2); j < NPRIMES; j += i) {
       printf("i: %d, j: %d\n", i, j);
       primes[j] = 0;
